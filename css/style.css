@@ -1,0 +1,58 @@
+body {
+
+	/* background: #d1d8e0; */
+
+}
+.container{
+	padding: 10px;
+	display: flex;
+	width: 100%;
+	column-gap: 20px;
+	justify-content: center;
+}
+.viewer {
+		display: inline-block;
+		border: solid 1px grey;
+		background : #ededf0;
+		width: 600px;
+		height: 850px; 
+		padding: 1px;
+		text-align: center;
+}
+#the-center {
+		direction: ltr;
+}
+#editor{
+	background: white;
+		display: inline-block;
+		width: 600px;
+}
+#compileBtn {
+	margin: 10px;
+}
+
+
+/* .editor { */
+/*   display: flex; */
+/*   height: 100%; */
+/*   flex-direction: column; */
+/*   justify-content: space-between; */
+/* } */
+textarea {
+  width: 600px;
+  height: 828px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  resize: none;
+  background: #eee;
+  margin: 0px 10px 10px 0px;
+}
+button {
+  width : 20%;
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
