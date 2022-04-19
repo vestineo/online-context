@@ -1,7 +1,7 @@
-import Router from '@koa/router'
-import { createProj, deleteProj, renameProj } from '../controllers/projects-controllors.js'
+const Router = require('@koa/router')
+const { createProj, deleteProj, renameProj } = require('../controllers/projects-controllors.js')
 
-export const router = new Router({
+const router = new Router({
 	prefix: '/projects'
 });
 
@@ -14,3 +14,7 @@ router.post('/delete', async (ctx,next) => {
 router.post('/rename', async (ctx,next) => {
 	 await renameProj(ctx,next);
 })
+
+module.exports = {
+	router : router
+}

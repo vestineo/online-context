@@ -1,6 +1,6 @@
-import {Userfiles, renameFile, deleteFile} from '../models/projectfiles.js'
+const {Userfiles, renameFile, deleteFile} = '../models/projectfiles.js'
 
-export async function createProj(ctx) {
+async function createProj(ctx) {
   const body = ctx.request.body;
   if( !body.name){
     ctx.status = 204;
@@ -12,7 +12,8 @@ export async function createProj(ctx) {
   }
     const proj = new Project(body.name,body.author)
 }
-export async function renameProj(ctx) {
+
+async function renameProj(ctx) {
   const body = ctx.request.body;
   if( !body.name || !body.author){
     ctx.status = 204;
@@ -20,11 +21,17 @@ export async function renameProj(ctx) {
   }
     renameProject(body.name,body.author,body.newName)
 }
-export async function deletProj(ctx) {
+
+async function deleteProj(ctx) {
   const body = ctx.request.body;
   if( !body.name || !body.author){
     ctx.status = 204;
     ctx.body = 'missing details'
   }
     deleteProject(body.name,body.author)
+}
+module.exports = {
+	createProj: createProj,
+	renameProj: renameProj,
+	deleteProj: deleteProj,
 }

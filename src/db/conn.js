@@ -1,12 +1,12 @@
 // Retrieve
-import { MongoClient, ObjectId } from 'mongodb'
+const { MongoClient, ObjectId } = require('mongodb')
 
 // Connect to the db
 const client = new MongoClient("mongodb://localhost:27017");
 
 let _db;
 
-export const dbo =  {
+const dbo =  {
   connectToServer: function (callback) {
     client.connect(function (err, db) {
       // Verify we got a good "db" object
@@ -23,3 +23,5 @@ export const dbo =  {
     return _db;
   },
 };
+
+module.exports = { dbo: dbo};

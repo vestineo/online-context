@@ -1,9 +1,9 @@
-import fs from "fs";
-import path from "path";
-import appRoot from 'app-root-path'
-import { Projectfiles } from "./projectfiles.js";
-
-import { MongoClient } from "mongodb";
+const fs = require("fs");
+const path = require("path");
+const appRoot = require('app-root-path')
+const { Projectfiles } = require("./projectfiles.js");
+const {dbo} = require('../db/conn.js')
+const { MongoClient } = require("mongodb");
 const client = new MongoClient("mongodb://localhost:27017");
 client.connect();
 let db = client.db("onlineContext");
@@ -11,7 +11,7 @@ let projects = db.collection("projects");
 
 const projectsFolder = path.join(appRoot.toString(), "projects");
 
-export class Project {
+ class Project {
   constructor(name, author) {
     this.name = name || "New Project";
     this.author = author || "ghost";
@@ -43,7 +43,7 @@ export class Project {
   }
 }
 
-export const deleteProject = (projName, projAuthor) => {
+ const deleteProject = (projName, projAuthor) => {
   const folderpath = path.join(projectsFolder, `${projName}`);
   fs.rm(folderpath, { recursive: true }, (err) => {
     if (err) console.log(err);
@@ -51,7 +51,7 @@ export const deleteProject = (projName, projAuthor) => {
   projects.deleteOne({ name: projName, author: projAuthor });
 };
 
-export const renameProject = (projName, projAuthor, newName) => {
+ const renameProject = (projName, projAuthor, newName) => {
   const newPath = path.join(projectsFolder, `${newName}`);
   const oldPath = path.join(projectsFolder, `${projName}`);
   fs.rename(oldPath, newPath, function (err) {
@@ -67,3 +67,9 @@ export const renameProject = (projName, projAuthor, newName) => {
     { $set: { name: newName , "files.$[].project": newName} }
   );
 };
+
+module.exports = {
+	Project: Project,
+	deleteProject: deleteProject,
+	renameProject: renameProject
+}

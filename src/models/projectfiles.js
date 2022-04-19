@@ -1,8 +1,8 @@
-import fs from "fs";
-import path from "path";
-// import {dbo} from "../db/conn.js";
-import appRoot from 'app-root-path'
-import { MongoClient } from "mongodb";
+const fs = require("fs")
+const path = require("path")
+// const {dbo} = "../db/conn.js";
+const appRoot = require('app-root-path')
+const { MongoClient } = require("mongodb")
 const client = new MongoClient("mongodb://localhost:27017");
 client.connect();
 let db = client.db("onlineContext");
@@ -26,7 +26,7 @@ const saveFile = (file) => {
   );
 };
 
-export class Projectfiles {
+ class Projectfiles {
   constructor(project, name, type, folder) {
     this.project = project;
     this.name = name || "main.tex";
@@ -102,7 +102,7 @@ export class Projectfiles {
   }
 }
 
-export const updateFile = (data = "") => {
+ const updateFile = (data = "") => {
   const filepath = path.join(
     projectsFolder,
     file.project,
@@ -114,7 +114,7 @@ export const updateFile = (data = "") => {
   });
 };
 
-export const deleteFile = (file) => {
+ const deleteFile = (file) => {
   const filepath = path.join(
     projectsFolder,
     `${file.project}`,
@@ -130,7 +130,7 @@ export const deleteFile = (file) => {
   );
 };
 
-export const renameFile = (file, newName) => {
+ const renameFile = (file, newName) => {
   const newPath = path.join(projectsFolder, `${file.project}`, file.folder, newName);
   const oldPath = path.join(
     projectsFolder,
@@ -151,3 +151,10 @@ export const renameFile = (file, newName) => {
     { $set: { "files.$.name": newName } }
   );
 };
+
+module.exports = {
+	Projectfiles: Projectfiles,
+	renameFile: renameFile,
+	updateFile: updateFile,
+	deleteFile: deleteFile,
+}

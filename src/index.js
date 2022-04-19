@@ -1,30 +1,29 @@
-import path from 'path';
-import Koa from "koa";
-import Router from "@koa/router";
-import koaBody from "koa-body";
-import logger from "koa-logger";
-import passport from "koa-passport";
-import session from "koa-session";
-import { router as userActionRouter } from "./routes/user-actions.js";
-import { router as projectRouter} from './routes/projects-routes.js'
-import "./auth.js";
-import { dbo } from "./db/conn.js";
+const path = require('path')
+const Koa = require("koa")
+const Router = require("@koa/router")
+const koaBody = require("koa-body")
+const logger = require("koa-logger")
+const passport = require("koa-passport")
+const session = require("koa-session")
+const { router : userActionRouter } = require("./routes/user-actions.js")
+const { router : projectRouter} = require('./routes/projects-routes.js')
+const { dbo } = require("./db/conn.js");
+require("./auth.js");
 
 // Global variable
 global.appRoot = path.resolve(path.dirname(""));
-
+global.dbo = dbo;
 const app = new Koa();
 const router = new Router();
 
 app.keys = ["secret"];
-app.use(session({}, app));
+app.use(session(app));
 
 router.get("/", (ctx, next) => {
   ctx.body = "<h1>Hello Koa server</h1>";
 });
 
 router.get("/check", function(ctx, next) {
-				console.log(ctx.isAuthenticated())
   if (ctx.isAuthenticated()) {
     ctx.body = "your are secret" 
   } else {

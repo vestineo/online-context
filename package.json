@@ -2,23 +2,13 @@
   "name": "online-context",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "web-dev-server --node-resolve --open --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@codemirror/basic-setup": "^0.19.3",
-    "@codemirror/highlight": "^0.19.8",
-    "@codemirror/lang-javascript": "^0.19.7",
-    "@codemirror/language": "^0.19.10",
-    "@codemirror/state": "^0.19.9",
-    "@codemirror/view": "^0.19.48",
-    "@koa/router": "^10.1.1",
-    "@lezer/lr": "^0.15.8",
-    "@rollup/plugin-node-resolve": "^13.1.3",
     "app-root-path": "^3.0.0",
     "koa": "^2.13.4",
     "koa-body": "^4.2.0",
@@ -28,11 +18,9 @@
     "koa-session": "^6.2.0",
     "koa-static": "^5.0.0",
     "mangodb": "^1.0.0",
-    "mongodb": "github:mongodb/node-mongodb-native",
+    "mongodb": "^4.5.0",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
-    "pdfjs-dist": "^2.13.216",
     "rollup": "^2.70.1"
-  },
-  "type": "module"
+  }
 }

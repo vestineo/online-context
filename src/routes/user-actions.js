@@ -1,7 +1,7 @@
-import Router from '@koa/router'
-import { login, register } from '../controllers/useraction-controllors.js'
+const Router = require('@koa/router')
+const { login, register } = require('../controllers/useraction-controllors.js')
 
-export const router = new Router({
+const router = new Router({
 	prefix: '/users'
 });
 
@@ -11,3 +11,7 @@ router.post('/login', async (ctx, next) => {
 router.post('/register', async (ctx,next) => {
 	 await register(ctx,next);
 })
+
+module.exports = {
+	router : router
+}

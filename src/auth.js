@@ -1,7 +1,6 @@
-import passport from "koa-passport";
-import { Strategy as LocalStrategy } from "passport-local";
-// import {getUserByName} from './models/user.js'
-import { dbo } from "./db/conn.js";
+const passport = require("koa-passport");
+const { Strategy: LocalStrategy } = require("passport-local");
+const { dbo } = require("./db/conn.js");
 
 passport.serializeUser(function (user, done) {
   done(null, user._id.toString());
@@ -9,8 +8,8 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(async function (id, done) {
   try {
-    let db = getDb();
-    const user = db.users.findOne({ '_id': dbo.objId(id) });
+    let db = await dbo.getDb();
+    const user = await db.collection("users").findOne({ _id: dbo.objId(id) });
     done(null, user);
   } catch (err) {
     done(err);
