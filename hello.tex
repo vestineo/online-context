@@ -1,13 +1,42 @@
+\setuphead[title][style={\ss\bfd},
+    before={\begingroup},
+    after={John Doe, the author\smallskip%
+           \currentdate\bigskip\endgroup}]
+
 \starttext
-\startstandardmakeup
-\midaligned{From Hasselt to America}
-\midaligned{by}
-\midaligned{J. Jonker and C. van Marle}
-\stopstandardmakeup
-\title{Foreword}
-\chapter{Introduction}
-\chapter{The Rensselaer family}
-\chapter{The Lansing family}
-\chapter{The Cuyler family}
-\chapter{Appendix: Photos}
+\title{\CONTEXT}
+
+\section{Text}
+
+\startMPcode
+  draw fullcircle scaled 3cm;
+\stopMPcode
+
+\CONTEXT\ is a document preparation system for the 
+\TEX\ typesetting program. It offers programmable 
+desktop publishing features and extensive 
+facilities for automating most aspects of 
+typesetting and desktop publishing, including 
+numbering and cross-referencing (for example to 
+equation \in[eqn:famous-emc]), tables and figures, 
+page layout, bibliographies, and much more.
+
+It was originally written around 1990 by Hans 
+Hagen. It could be an alternative or complement 
+to \LATEX.
+
+\section{Maths}
+With \CONTEXT\ we could write maths. Equations 
+can be automatically numbered.
+
+\placeformula[eqn:famous-emc]
+\startformula
+    E = mc^2
+\stopformula
+with
+\placeformula[eqn:def-m]
+\startformula
+    m = \frac{m_0}{\sqrt{1-\frac{v^2}{c^2}}}
+\stopformula
+
 \stoptext

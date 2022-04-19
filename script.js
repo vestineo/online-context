@@ -11,6 +11,8 @@ import {
   Text
 } from '@codemirror/state'
 
+import { context } from './context.js'
+
 // Global Const 
 const compileBtn = document.getElementById("compileBtn");
 compileBtn.addEventListener('click', requestPdf);
@@ -85,6 +87,7 @@ let editor = new EditorView({
 			requestCompile.extension,
 			baseTheme,
 			fixedHeightEditor,
+	    context()
 			// minHeightEditor,
 		]
   }),

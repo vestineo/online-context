@@ -1,0 +1,29 @@
+[ ] project create update delete
+-> /projects/create
+-> 	    /update
+->	    /delete
+
+project model:
+
+public Name
+public Id
+public array userfiles [model]
+public description
+public author
+public date created
+public date modified
+
+
+[ ] upload create edit text
+[ ] bfile add delete no edit
+
+userfiles model:
+public fullname
+private projectId
+private path
+public type
+ - folder
+ - text file
+ - binary file image, video, font etc.
+public date created
+public date modified
